@@ -24,7 +24,7 @@ function home(request, response) {
 				//extract the user input, number of paragraphs
 				var query = querystring.parse(postBody.toString());
 				console.log(query.numberOfParagraphs);
-				//redirect to /:username
+				//redirect to /:#  ie: numberOfParagraphs
 				response.writeHead(303, {"Location": "/" + query.numberOfParagraphs});
 				response.end();					
 			})
@@ -43,40 +43,12 @@ function generate(request, response) {
 		renderer.view('header', {}, response);
 		renderer.view('search', {}, response);
 
-		//create paragraph html
+		//generate paragraph html
 		let loremIpsumText = loremIpsum.getAllParagraphs(numberOfParagraphs);
 		var values = {placeholder: loremIpsumText};
 		renderer.view('generatedContent', values, response);
 		renderer.view('footer', {}, response);
 		response.end();
-
-		// //get json from treehouse
-		// var studentProfile = new Profile(username);
-		// //on 'end'
-		// studentProfile.on("end", function(profileJSON) {
-		// 	//show profile
-
-		// 	//store values which we need
-		// 	var values = {
-		// 		avatarUrl: profileJSON.gravatar_url,
-		// 		username: profileJSON.profile_name,
-		// 		badges: profileJSON.badges.length,
-		// 		javascriptPoints: profileJSON.points.JavaScript
-		// 	}
-		// 	//Simple response
-		// 	renderer.view('profile', values, response);
-		// 	renderer.view('footer', {}, response);
-		// 	response.end();
-		// });
-		
-		// //on 'error'
-		// studentProfile.on("error", function(error) {
-		// 	//show error
-		// 	renderer.view('error', {errorMessage: error.message}, response);
-		// 	renderer.view('search', {}, response);
-		// 	renderer.view('footer', {}, response);
-		// 	response.end();
-		// });
 											
 	}
 }
