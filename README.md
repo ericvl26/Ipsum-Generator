@@ -1,4 +1,4 @@
-#Ipsum Generator
+## Ipsum Generator
 
 This app is a lorem ipsum generator that will produce paragraphs consisting of random movie quotes.  This was a project to get familiar with Node.js.
 
